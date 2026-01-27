@@ -11,5 +11,21 @@ config_version=5
 [application]
 
 config/name="Casey Lyons Intro Game"
+run/main_scene="uid://d0g80rmxufpt8"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[debug]
+
+gdscript/warnings/untyped_declaration=2
+gdscript/warnings/unsafe_property_access=2
+gdscript/warnings/unsafe_method_access=2
+gdscript/warnings/unsafe_cast=1
+
+[layer_names]
+
+2d_physics/layer_2="Player"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

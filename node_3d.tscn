@@ -1,5 +1,42 @@
-[gd_scene format=3 uid="uid://d0g80rmxufpt8"]
+[gd_scene load_steps=6 format=3 uid="uid://d0g80rmxufpt8"]
 
-[node name="Node3D" type="Node3D"]
+[ext_resource type="Texture2D" uid="uid://bpfh2na8rn4kw" path="res://icon.svg" id="1_a202f"]
+[ext_resource type="FontFile" uid="uid://b5niruphsnce6" path="res://fonts/PixelOperator8.ttf" id="2_noarx"]
+[ext_resource type="PackedScene" uid="uid://0ev76lq1388x" path="res://player.tscn" id="3_a0tk4"]
 
-[node name="Area3D" type="Area3D" parent="."]
+[sub_resource type="LabelSettings" id="LabelSettings_a0tk4"]
+font = ExtResource("2_noarx")
+font_size = 24
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a0tk4"]
+size = Vector2(127.999954, 127.982666)
+
+[node name="Main Level" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 417.0
+offset_top = 254.0
+offset_right = 751.0
+offset_bottom = 322.0
+text = "Casey Lyons"
+label_settings = SubResource("LabelSettings_a0tk4")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(586.5, 340)
+zoom = Vector2(4, 4)
+
+[node name="Player" parent="." instance=ExtResource("3_a0tk4")]
+position = Vector2(523, 310)
+
+[node name="Floor" type="Sprite2D" parent="."]
+position = Vector2(586.5, 386.25)
+scale = Vector2(2.148438, 0.44921866)
+texture = ExtResource("1_a202f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(0, 0.008728027)
+scale = Vector2(1.0000004, 1.0000004)
+shape = SubResource("RectangleShape2D_a0tk4")
