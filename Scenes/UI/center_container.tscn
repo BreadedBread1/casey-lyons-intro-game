@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://b4qhgjiflyvd5"]
+
+[ext_resource type="FontFile" uid="uid://b57q37c8ky0ha" path="res://fonts/PixelOperator8-Bold.ttf" id="1_gxeva"]
+[ext_resource type="Texture2D" uid="uid://beq51vy16mmh8" path="res://items/coin.png" id="2_n4cb6"]
+[ext_resource type="Texture2D" uid="uid://dpp43uj4o855d" path="res://items/fruit.png" id="4_n4cb6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3q7yr"]
+atlas = ExtResource("2_n4cb6")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jpnvj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3q7yr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62xtf"]
+atlas = ExtResource("4_n4cb6")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3q7yr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62xtf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Pickup UI" type="Container" unique_id=10077987]
+offset_left = 26.0
+offset_top = 4.0
+offset_right = 41.0
+offset_bottom = 38.0
+size_flags_horizontal = 0
+
+[node name="Coin Label" type="AnimatedSprite2D" parent="." unique_id=417426204]
+position = Vector2(-16, 7)
+sprite_frames = SubResource("SpriteFrames_jpnvj")
+
+[node name="Grape Label" type="AnimatedSprite2D" parent="." unique_id=270775370]
+position = Vector2(-16, 26)
+sprite_frames = SubResource("SpriteFrames_3q7yr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=323227844]
+layout_mode = 2
+
+[node name="Coin Count" type="Label" parent="VBoxContainer" unique_id=2004200987]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_gxeva")
+theme_override_font_sizes/font_size = 16
+text = "0"
+
+[node name="Grape Count" type="Label" parent="VBoxContainer" unique_id=1462792965]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_gxeva")
+theme_override_font_sizes/font_size = 16
+text = "0"

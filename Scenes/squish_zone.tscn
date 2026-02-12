@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://pg07l87icf1x"]
+
+[ext_resource type="Script" uid="uid://d046cvct84r14" path="res://Scripts/squish_zone.gd" id="1_kgsle"]
+
+[node name="squish_zone" type="Area2D" unique_id=1824700032]
+collision_mask = 2
+script = ExtResource("1_kgsle")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

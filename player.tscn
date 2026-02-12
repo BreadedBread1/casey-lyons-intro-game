@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://0ev76lq1388x"]
+[gd_scene format=3 uid="uid://0ev76lq1388x"]
 
 [ext_resource type="Texture2D" uid="uid://h52p8busedu7" path="res://characters/DinoSprites - doux.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://3gd4qg45ud2e" path="res://Scripts/player.gd" id="1_onrkg"]
@@ -23,6 +23,34 @@ region = Rect2(48, 0, 24, 24)
 atlas = ExtResource("1_4flbx")
 region = Rect2(72, 0, 24, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(288, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jxqw"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(432, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dw050"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(456, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b26j0"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(480, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7ghd"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(504, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvl01"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(528, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivps1"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(552, 0, 24, 24)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_1jxqw"]
 animations = [{
 "frames": [{
@@ -41,18 +69,52 @@ animations = [{
 "loop": true,
 "name": &"Idle",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onrkg")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jxqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dw050")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b26j0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7ghd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvl01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivps1")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" unique_id=1505801651]
 collision_layer = 2
+platform_on_leave = 2
 script = ExtResource("1_onrkg")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1615593524]
 position = Vector2(64, 28)
 shape = SubResource("CapsuleShape2D_onrkg")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1081666858]
 position = Vector2(65, 28)
 sprite_frames = SubResource("SpriteFrames_1jxqw")
-animation = &"Idle"
+animation = &"run"
 autoplay = "Idle"
+frame = 5
+frame_progress = 0.17454542

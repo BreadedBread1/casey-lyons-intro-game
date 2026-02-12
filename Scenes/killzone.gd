@@ -1,15 +1,11 @@
-extends Area2D
+extends "res://Scripts/killzone.gd"
 
 @onready var kill_timer: Timer = $KillTimer
 
-
 func _on_body_entered(body: Node2D) -> void:
-	body.get_node("CollisionShape2D").queue_free()
-	
 	kill_timer.start()
-	Engine.time_scale = 0.3
+	Engine.time_scale = 1.0
 
 
 func _on_kill_timer_timeout() -> void:
 	get_tree().reload_current_scene()
-	Engine.time_scale = 1.0

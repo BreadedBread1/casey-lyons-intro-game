@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://coeqwa8jt6g70"]
+
+[ext_resource type="Texture2D" uid="uid://dpp43uj4o855d" path="res://items/fruit.png" id="2_78183"]
+
+[sub_resource type="GDScript" id="GDScript_yy1x6"]
+script/source = "extends Area2D
+
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var game_manager: GameManager = %GameManager
+
+
+func _on_body_entered(body: Node2D) -> void:
+	var player : Player = body as Player
+	player.JUMP_VELOCITY = (player.JUMP_VELOCITY - 25)
+	game_manager.add_grape()
+	animation_player.play(\"pickup grape\")
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmg7o"]
+atlas = ExtResource("2_78183")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43t76"]
+atlas = ExtResource("2_78183")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78183"]
+atlas = ExtResource("2_78183")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fg2jo"]
+atlas = ExtResource("2_78183")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ngbn8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmg7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43t76")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78183")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fg2jo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_if7fb"]
+radius = 8.571428
+height = 19.999998
+
+[sub_resource type="Animation" id="Animation_cmg7o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_43t76"]
+resource_name = "pickup"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.16666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.16666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_78183"]
+_data = {
+&"RESET": SubResource("Animation_cmg7o"),
+&"pickup grape": SubResource("Animation_43t76")
+}
+
+[node name="Grapes" type="Area2D" unique_id=595133155]
+position = Vector2(0, -1)
+collision_mask = 2
+script = SubResource("GDScript_yy1x6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1308333776]
+sprite_frames = SubResource("SpriteFrames_ngbn8")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2000631996]
+position = Vector2(0, 0.5)
+scale = Vector2(0.7, 0.85)
+shape = SubResource("CapsuleShape2D_if7fb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=601627062]
+libraries/ = SubResource("AnimationLibrary_78183")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdoytdgprtyvn"]
+[gd_scene format=3 uid="uid://cdoytdgprtyvn"]
 
 [ext_resource type="Texture2D" uid="uid://cs6gh7cgerv54" path="res://tilesets/props.png" id="1_mi635"]
 
